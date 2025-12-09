@@ -1,0 +1,76 @@
+/* Estilos generales del contenedor */
+.container {
+  padding-bottom: 2rem;
+}
+
+/* Estilo para los botones con iconos (Agregar) */
+.icon-btn {
+  width: 20px;
+  margin-right: 8px;
+  filter: brightness(0) invert(1); /* Vuelve blanco el icono si es negro */
+}
+
+/* Estilo para los iconos de acción (Editar/Eliminar) en la tabla */
+.icon-action {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: scale(1.1); /* Efecto zoom al pasar el mouse */
+  }
+}
+
+/* --- ESTILOS DEL MODAL PERSONALIZADO --- */
+/* Esto es OBLIGATORIO para que tu modal funcione con *ngIf */
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050; /* Para que quede encima de todo */
+}
+
+.modal-card {
+  background: white;
+  width: 90%;
+  max-width: 600px; /* Ancho máximo del modal */
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh; /* Para que no se salga de la pantalla si es muy alto */
+  overflow: hidden;
+}
+
+.modal-header {
+  padding: 1rem;
+  border-bottom: 1px solid #dee2e6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8f9fa;
+}
+
+.modal-body {
+  padding: 1rem;
+  overflow-y: auto; /* Scroll si el formulario es muy largo */
+}
+
+.modal-footer {
+  padding: 1rem;
+  border-top: 1px solid #dee2e6;
+  background-color: #f8f9fa;
+}
+
+/* Ajuste extra para el textarea de descripción */
+textarea.form-control {
+  resize: none; /* Evita que el usuario cambie el tamaño manualmente */
+}

@@ -1,0 +1,61 @@
+.carousel-item img {
+  width: 100%;
+  height: auto;
+  max-height: 500px; /* altura en pantallas grandes */
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Para celulares */
+@media (max-width: 600px) {
+  .carousel-item img {
+    max-height: 250px;
+  }
+}
+
+//Botones
+$bg-color: #e6e6e6;
+
+.custom-card {
+  background-color: $bg-color;
+  border-radius: 8px;
+  cursor: pointer;          // Importante: muestra la manita para indicar que es clicable
+  transition: transform 0.2s;
+  min-height: 140px;
+  text-decoration: none;    // Quita el subrayado azul típico de los enlaces
+  color: inherit;           // Mantiene el color de texto original
+
+  &:hover {
+    transform: scale(1.05); // Efecto zoom al pasar el mouse
+    background-color: darken($bg-color, 5%);
+  }
+}
+
+// Clase para controlar el tamaño de TUS imágenes
+.img-icon {
+  width: 55px;   // Ajusta este número según el tamaño que prefieras
+  height: 55px;
+  object-fit: contain; // Asegura que la imagen no se recorte ni se estire feo
+}
+
+.text-label {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  color: #1a1a40;
+}
+
+//Titulo
+// Asegúrate de tener tu variable de color definida (o pon el código hex directo)
+
+
+.main-title {
+  color: #1a1a40;    // El mismo azul de tus iconos/textos
+  font-weight: 800;         // Letra muy gruesa (Bold)
+  font-size: 1.5rem;        // Un tamaño más grande e impactante
+  letter-spacing: -0.5px;   // Un toque estético para que se vea más moderno
+
+  // Opcional: Si quieres que se vea aún más elegante en pantallas grandes
+  @media (min-width: 768px) {
+    font-size: 3rem;
+  }
+}

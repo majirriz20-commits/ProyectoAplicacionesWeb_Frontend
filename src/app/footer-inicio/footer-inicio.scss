@@ -1,0 +1,22 @@
+.footer-inicio{
+  background-color: #00184F;
+  color:white;
+  font-size: 0.9rem;
+}
+
+.footer-icon{
+  height: 18px;
+  width: 18px;
+}
+
+/*.footer-logo-grande {
+  max-height: 120px;
+  width: auto;
+}*/
+
+/* Para añadir las líneas divisorias */
+@media (min-width: 100px) { /* Solo en pantallas 'lg' o más grandes */
+  .footer-inicio .col-lg-3:not(:last-child) {
+    border-right: 1px solid #fff;
+  }
+}

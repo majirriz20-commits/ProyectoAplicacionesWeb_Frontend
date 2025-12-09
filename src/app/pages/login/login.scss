@@ -1,0 +1,31 @@
+.bg-navy {
+    background-color: #13182b; /* Azul muy oscuro del header */
+}
+
+.login-body {
+    min-height: 80vh;
+    background-color: #f0f0f0; /* Fondo gris claro de atrás */
+    background-size: 60px 60px;
+    background-position: 0 0, 30px 30px;
+}
+
+.login-card {
+    background-color: #1a1e29; /* El color NEGRO/AZUL OSCURO de la tarjeta */
+    width: 100%;
+    max-width: 400px;
+    padding: 3rem 2.5rem;
+    border-radius: 4px; /* Bordes ligeramente cuadrados como en la imagen */
+}
+
+.btn-primary {
+    background-color: #263c78; /* Azul del botón */
+    border: none;
+    border-radius: 4px !important; /* Botón cuadradito */
+    width: 150px;
+
+    &:hover { background-color: #1a2b5e; }
+}
+
+.form-control {
+    height: 45px; /* Inputs un poco más altos */
+}

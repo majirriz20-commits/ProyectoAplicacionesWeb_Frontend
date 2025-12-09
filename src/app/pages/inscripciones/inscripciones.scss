@@ -1,0 +1,78 @@
+/* icons */
+.icon-btn { width: 18px; margin-right: 6px; vertical-align:middle; }
+.icon-action { width: 20px; }
+
+/* modal backdrop */
+.modal-backdrop{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+  padding: 1rem;
+}
+
+/* modal card */
+.modal-card {
+  background: white;
+  width: 100%;
+  max-width: 800px;
+  border-radius: 8px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+  overflow: hidden;
+}
+
+.modal-header {
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  padding: 1rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.modal-title {
+  margin:0;
+}
+
+.btn-close {
+  background: transparent;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+/* body and footer */
+.modal-body { padding: 1rem; }
+.modal-footer { padding: 0.75rem 1rem; border-top: 1px solid #e9ecef; }
+
+/* responsive table improvements */
+.table-responsive { overflow-x:auto; }
+
+/* mobile: stack rows as cards */
+@media (max-width: 600px) {
+  table thead { display: none; }
+  table tbody tr {
+    display: block;
+    border: 1px solid #e9ecef;
+    margin-bottom: 0.5rem;
+    border-radius: 6px;
+    padding: .6rem;
+  }
+  table tbody td {
+    display: flex;
+    justify-content: space-between;
+    padding: .25rem 0;
+  }
+  table tbody td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    margin-right: 8px;
+  }
+}
+
+/* optional: make search look like your design */
+.search-box .form-control[disabled] {
+  background: #f3f3f3;
+}

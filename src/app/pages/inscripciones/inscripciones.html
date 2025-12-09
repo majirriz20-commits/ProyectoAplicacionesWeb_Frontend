@@ -1,0 +1,109 @@
+<div class="container mt-4 inscripciones-page">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h3>Todas las inscripciones...</h3>
+    <button class="btn btn-primary" (click)="openAddModal()">
+      <img src="assets/Group 12.png" alt="+" class="icon-btn">Agregar
+    </button>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-12 col-md-6">
+      <input class="form-control" placeholder="Buscar..." [(ngModel)]="searchText" disabled>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-borderless align-middle">
+      <thead>
+        <tr>
+          <th>Nombre Alumno</th>
+          <th>Apellido Alumno</th>
+          <th>Taller Inscrito</th>
+          <th>Horario</th>
+          <th>Fecha Inscripción</th>
+          <th class="text-end">Accion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let inscripcion of inscripciones">
+          <td>{{ inscripcion.nombre_alumno }}</td>
+          <td>{{ inscripcion.apellido_paterno }}</td>
+          <td>{{ inscripcion.nombre_taller }}</td>
+          <td>{{ inscripcion.horario }}</td>
+          <td>{{ inscripcion.fecha_inscripcion }}</td>
+
+          <td class="text-end">
+            <button class="btn btn-link p-1" (click)="openEditModal(inscripcion)" title="Editar">
+              <img src="assets/Edit.png" alt="Editar" class="icon-action">
+            </button>
+            <button class="btn btn-link p-1" (click)="deleteInscripcion(inscripcion.id_inscripcion!)">
+              <img src="assets/Delete Black.png" alt="Eliminar" class="icon-action">
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="inscripciones.length === 0 && !loading" class="p-3 text-center text-muted">
+      No hay ninguna inscripción guardada en la Base de Datos
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" *ngIf="showModal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h5 class="modal-title">
+        {{ modalMode == 'add' ? 'Nueva Inscripción' : 'Editar Inscripción' }}
+      </h5>
+      <button type="button" class="btn-close" (click)="closeModal()"></button>
+    </div>
+
+    <form [formGroup]="inscripcionForm" (ngSubmit)="save()">
+      <div class="modal-body">
+        <div class="row g-2">
+
+          <div class="col-12">
+            <label class="form-label">Selecciona el Alumno</label>
+            <select formControlName="id_alumno" class="form-select">
+              <option value="" disabled selected>-- Busca un alumno --</option>
+              <option *ngFor="let alumno of listaAlumnos" [value]="alumno.id_alumno">
+                {{ alumno.nombre }} {{ alumno.apellido_paterno }} {{ alumno.apellido_materno }}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-12 mt-3">
+            <label class="form-label">Selecciona el Taller</label>
+            <select formControlName="id_taller" class="form-select">
+              <option value="" disabled selected>-- Elige un taller --</option>
+              <option *ngFor="let taller of listaTalleres" [value]="taller.id_taller">
+                {{ taller.nombre_taller }} ({{ taller.horario }})
+              </option>
+            </select>
+          </div>
+
+          </div>
+      </div>
+
+      <div class="modal-footer d-flex justify-content-end gap-2">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">
+          <img src="assets/Cancel.png" alt="Cancelar" class="icon-action">Cancelar
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-danger"
+          *ngIf="modalMode === 'edit' && currentEditingId"
+          (click)="deleteInscripcion(currentEditingId!)">
+          <img src="assets/Delete.png" alt="Eliminar" class="icon-action"> Eliminar
+        </button>
+
+        <button type="submit" class="btn btn-primary">
+          <img src="assets/Save.png" alt="Guardar" class="icon-action">
+          {{ modalMode === 'add' ? 'Inscribir' : 'Guardar cambios' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

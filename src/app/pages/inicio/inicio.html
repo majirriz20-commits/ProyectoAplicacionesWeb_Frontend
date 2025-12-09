@@ -1,0 +1,49 @@
+<section class="carousel">
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="d-block w-100" src="https://culturaleon.com/Core/Media/Event/173/173_66d2149b35b59.jpg" alt="First slide">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="https://culturaleon.com/Core/Media/Event/193/193_6706c3b5ab192.jpg" alt="Second slide">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="https://culturaleon.com/Core/Media/Event/7030/068270db105bbcc9da9ad64264a4133a.jpg" alt="Third slide">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="https://culturaleon.com/Core/Media/Event/7041/2be37ecb5bd454950c776205912abc70.jpg" alt="Third slide">
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only"></span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only"></span>
+    </a>
+  </div>
+</section>
+
+<section class="icons">
+  <div class="container my-4">
+
+    <h3 class="text-center mb-4 main-title">Crea, edita y personaliza...</h3>
+    <div class="row justify-content-center g-3"></div>
+
+    <div class="row justify-content-center g-3">
+      <div class="col-12, col-sm-6 col-md-3" *ngFor="let btn of botones">
+        <div class="custom-card d-flex flex-column align-items-center justify-content-center p-4"
+           [routerLink]="btn.url">
+            <img [src]="btn.img" [alt]="btn.titulo" class="img-icon mb-2">
+            <span class="fw-bold text-label">{{ btn.titulo }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,119 @@
+<div class="container mt-4 maestros-page">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h3>Todos los alumnos...</h3>
+    <button class="btn btn-primary" (click)="openAddModal()">
+      <img src="assets/Group 12.png" alt="+" class="icon-btn">Agregar
+    </button>
+  </div>
+
+  <!--Barra de busqueda-->
+  <div class="row mb-3">
+    <div class="col-12 col-md-6">
+      <input class="form-control" placeholder="Buscar..." [(ngModel)]="searchText" disabled>
+    </div>
+  </div>
+
+  <!--Tabla de contenido-->
+  <div class="table-responsive">
+    <table class="table table-striped table-borderless align-middle">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido Paterno</th>
+          <th>Apellido Materno</th>
+          <th>Edad</th>
+          <th>Semestre</th>
+          <th>Matricula</th>
+          <th class="text-end">Accion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let alumno of alumnos">
+          <td>{{alumno.nombre}}</td>
+          <td>{{alumno.apellido_paterno}}</td>
+          <td>{{alumno.apellido_materno}}</td>
+          <td>{{alumno.edad}}</td>
+          <td>{{alumno.semestre}}</td>
+          <td>{{alumno.matricula}}</td>
+          <td class="text-end">
+            <button class="btn btn-link p-1" (click)="openEditModal(alumno)" title="Editar">
+              <img src="assets/Edit.png" alt="Editar" class="icon-action">
+            </button>
+            <button class="btn btn-link p-1" (click)="deleteAlumno(alumno.id_alumno!)">
+              <img src="assets/Delete Black.png" alt="Eliminar" class="icon-action">
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="alumnos.length === 0 && !loading" class="p-3 text-center text-muted">
+      No hay ningun alumno guardado en la Base de Datos
+    </div>
+  </div>
+</div>
+
+<!--Modal-->
+<div class="modal-backdrop" *ngIf="showModal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h5 class="modal-title">{{ modalMode == 'add' ? 'Agregar Alumno' : 'Editar Alumno'}}</h5>
+      <button type="button" class="btn-close" (click)="closeModal()"></button>
+    </div>
+
+    <form [formGroup]="alumnoForm" (ngSubmit)="save()">
+      <div class="modal-body">
+        <div class="row g-2">
+          <!--Nombre-->
+          <div class="col-12 col-md-6">
+            <label class="form-label">Nombre</label>
+            <input formControlName="nombre" class="form-control" />
+          </div>
+          <!--Apellido paterno-->
+          <div class="col-12 col-md-6">
+            <label class="form-label">Apellido Paterno</label>
+            <input formControlName="apellido_paterno" class="form-control" />
+          </div>
+          <!--Apellido materno-->
+          <div class="col-12 col-md-6">
+            <label class="form-label">Apellido Materno</label>
+            <input formControlName="apellido_materno" class="form-control" />
+          </div>
+          <!--Edad-->
+          <div class="col-12 col-md-6">
+            <label class="form-label">Edad</label>
+            <input formControlName="edad" class="form-control" />
+          </div>
+          <!--Semestre-->
+          <div class="col-12 col-md-6">
+            <label class="form-label">Semestre</label>
+            <input formControlName="semestre" class="form-control" />
+          </div>
+          <!--Matricula-->
+          <div class="col-12 col-md-6">
+            <label class="form-label">Matricula</label>
+            <input formControlName="matricula" class="form-control" />
+          </div>
+        </div>
+      </div>
+
+      <!--Botones de abajo-->
+      <div class="modal-footer d-flex justify-content-end gap-2">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">
+          <img src="assets/Cancel.png" alt="Cancelar" class="icon-action">Cancelar
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          *ngIf="modalMode === 'edit' && currentEditingId"
+          (click)="deleteAlumno(currentEditingId!)">
+          <img src="assets/Delete.png" alt="Eliminar" class="icon-action"> Eliminar
+        </button>
+
+        <button type="submit" class="btn btn-primary">
+          <img src="assets/Save.png" alt="Guardar" class="icon-action">{{ modalMode === 'add' ? 'Guardar' : 'Guardar cambios' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
